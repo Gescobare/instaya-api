@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import {Link} from 'react-router-dom';
 
 function Login() {
 
@@ -30,7 +31,7 @@ function Login() {
                   <div className="text-center">
                     <button type="submit" className="btn btn-primary btn-block enter-btn">Ingresar</button>
                   </div>
-                  <p className="sign-up">¿Aún no tienes cuenta? <a href="#"> Regístrate</a></p>
+                  <p className="sign-up">¿Aún no tienes cuenta? <Link to="/signup" className=""> Regístrate</Link></p>
                 </form>
               </div>
             </div>
