@@ -1,7 +1,21 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 
-function Ordern() {
+function Ordern({lists}) {
+
+    const handleInputChange = id =>{
+        const [edit, setedit] = useState([]);
+            
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(edit)
+          };
+
+        fetch ("http://localhost:3000/api/package/"+ id, requestOptions)
+        .then(res => res.json())
+        .then(res => setlists(res))       
+    }
 
     return (
         <Fragment>
@@ -20,14 +34,14 @@ function Ordern() {
                         <div className="card">
                             <div className="card-body">
                                 <h4 className="card-title">Actualización de órden</h4>
-                                <form className="form-sample">
+                                <form className="form-sample" >
                                     <p className="card-description"> Información y estado de la orden </p>
                                     <div className="row">
                                         <div className="col-md-6">
                                             <div className="form-group row">
                                                 <label className="col-sm-3 col-form-label">Fecha - Hora</label>
                                                 <div className="col-sm-9">
-                                                    <input type="datetime-local" className="form-control" value="2022-11-03T13:03"></input>
+                                                    <input type="datetime-local" className="form-control"></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -35,7 +49,7 @@ function Ordern() {
                                             <div className="form-group row">
                                                 <label className="col-sm-4 col-form-label">Ancho</label>
                                                 <div className="col-sm-8">
-                                                    <input type="number" className="form-control" value="10"></input>
+                                                    <input type="number" className="form-control" ></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -43,7 +57,7 @@ function Ordern() {
                                             <div className="form-group row">
                                                 <label className="col-sm-4 col-form-label">Largo</label>
                                                 <div className="col-sm-8">
-                                                    <input type="number" className="form-control" value="20"></input>
+                                                    <input type="number" className="form-control" ></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -51,7 +65,7 @@ function Ordern() {
                                             <div className="form-group row">
                                                 <label className="col-sm-4 col-form-label">Alto</label>
                                                 <div className="col-sm-8">
-                                                    <input type="number" className="form-control" value="12"></input>
+                                                    <input type="number" className="form-control" ></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -76,7 +90,7 @@ function Ordern() {
                                             <div className="form-group row">
                                                 <label className="col-sm-3 col-form-label">Dirección recogida</label>
                                                 <div className="col-sm-9">
-                                                    <input type="text" className="form-control" value="CALLE 7A # 70B-07 PISO 1"></input>
+                                                    <input type="text" className="form-control" ></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -84,7 +98,7 @@ function Ordern() {
                                             <div className="form-group row">
                                                 <label className="col-sm-3 col-form-label">Ciudad recogida</label>
                                                 <div className="col-sm-9">
-                                                    <input type="text" className="form-control" value="Bogotá"></input>
+                                                    <input type="text" className="form-control" ></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -95,7 +109,7 @@ function Ordern() {
                                             <div className="form-group row">
                                                 <label className="col-sm-3 col-form-label">Nombre destinatario</label>
                                                 <div className="col-sm-9">
-                                                    <input type="text" className="form-control" value="Juan Carlos Vargas"></input>
+                                                    <input type="text" className="form-control" ></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -103,7 +117,7 @@ function Ordern() {
                                             <div className="form-group row">
                                                 <label className="col-sm-3 col-form-label">Cédula/NIT destinatario</label>
                                                 <div className="col-sm-9">
-                                                    <input type="number" className="form-control" value="1024345678"></input>
+                                                    <input type="number" className="form-control" ></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -113,7 +127,7 @@ function Ordern() {
                                             <div className="form-group row">
                                                 <label className="col-sm-3 col-form-label">Dirección entrega</label>
                                                 <div className="col-sm-9">
-                                                    <input type="text" className="form-control" value="CALLE 8 # 24-21 INT 1 APTO 203"></input>
+                                                    <input type="text" className="form-control" ></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -121,7 +135,7 @@ function Ordern() {
                                             <div className="form-group row">
                                                 <label className="col-sm-3 col-form-label">Ciudad entrega</label>
                                                 <div className="col-sm-9">
-                                                    <input type="text" className="form-control" value="Villavicencio"></input>
+                                                    <input type="text" className="form-control" ></input>
                                                 </div>
                                             </div>
                                         </div>

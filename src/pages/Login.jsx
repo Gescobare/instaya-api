@@ -1,7 +1,45 @@
-import React, { Fragment } from "react";
-import {Link} from 'react-router-dom';
+import React, { Fragment, useState } from "react";
+import {Link, redirect} from 'react-router-dom';
 
 function Login() {
+
+  const [loginUser, setloginUser] = useState({
+
+    email: "",
+    password: ""
+
+})
+
+const handleInputChange = (event) => {
+
+  //console.log(event.target.value)
+  setloginUser({
+    ...loginUser,
+    [event.target.name] : event.target.value
+
+  })
+}
+
+const SendData = (event) =>{
+  event.preventDefault();
+  console.log(loginUser.email)
+  console.log(loginUser.password)
+
+  if (loginUser.email === "" || loginUser.password === ""){
+    console.log("Faltan datos, estan vacios")
+  }else{
+    //useEffect(()=>{
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(loginUser)
+      };
+      fetch ("http://localhost:3000/api/session",requestOptions)
+        .then(res => res.json())
+        .then(res => console.log(res))
+      }  
+    //}) 
+}
 
   return (
     <Fragment>
@@ -12,14 +50,14 @@ function Login() {
             <div className="card col-lg-4 mx-auto">
               <div className="card-body px-5 py-5">
                 <h3 className="card-title text-left mb-3">Iniciar Sesión</h3>
-                <form>
+                <form onSubmit={SendData}>
                   <div className="form-group">
                     <label>Correo *</label>
-                    <input type="text" className="form-control p_input"></input>
+                    <input onChange={handleInputChange} name="email" type="text" className="form-control p_input"></input>
                   </div>
                   <div className="form-group">
                     <label>Contraseña *</label>
-                    <input type="text" className="form-control p_input"></input>
+                    <input onChange={handleInputChange} name="password" type="password" className="form-control p_input"></input>
                   </div>
                   <div className="form-group d-flex align-items-center justify-content-between">
                     <div className="form-check">

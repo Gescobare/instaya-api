@@ -1,7 +1,19 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
+import TableList from "../components/TableList";
 
 function Orders() {
+
+    const [lists, setlists] = useState([])
+  
+    useEffect(()=>{
+        const getlists = () =>{    
+        fetch ("http://localhost:3000/api/package")
+        .then(res => res.json())
+        .then(res => setlists(res))    
+        }
+        getlists()
+    }, [])   
 
     return (
         <Fragment>
@@ -21,7 +33,8 @@ function Orders() {
                             <div className="card-body">
                                 <h4 className="card-title">Listado de órdenes</h4>
                                 <div className="table-responsive">
-                                    <table className="table">
+                                    <TableList lists={lists}/>
+                                    {/* <table className="table">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -32,7 +45,7 @@ function Orders() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            {/* <tr>
                                                 <td><Link to="/1" classNameName=""> 1 </Link></td>
                                                 <td>03/11/2022</td>
                                                 <td>Villavicencio</td>
@@ -75,7 +88,7 @@ function Orders() {
                                                 <td><label className="badge badge-danger">Cancelado</label></td>
                                             </tr>
                                         </tbody>
-                                    </table>
+                                    </table> */}
                                 </div>
                             </div>
                         </div>
